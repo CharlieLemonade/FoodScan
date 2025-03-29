@@ -135,30 +135,6 @@ struct CheckboxToggleStyle: ToggleStyle {
     }
 }
 
-struct CustomTextField: View {
-    var icon: String
-    var placeholder: String
-    @Binding var text: String
-    var isSecure: Bool = false
-
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .foregroundColor(.gray)
-            
-            
-
-            if isSecure {
-                SecureField(placeholder, text: $text)
-            } else {
-                TextField(placeholder, text: $text)
-            }
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
-    }
-}
-
 struct SocialButton: View {
     var imageName: String
     var action: () -> Void
