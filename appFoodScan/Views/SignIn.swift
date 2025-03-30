@@ -135,25 +135,7 @@ struct CheckboxToggleStyle: ToggleStyle {
     }
 }
 
-struct SocialButton: View {
-    var imageName: String
-    var action: () -> Void
 
-    var body: some View {
-        Button(action: action) {
-            Image(imageName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20)
-        }.frame(width: 48, height: 52)
-        .overlay{
-            
-            RoundedRectangle (cornerRadius: 16)
-                .stroke (lineWidth: 0.5)
-                .foregroundStyle(.gray)
-        }
-    }
-}
 #Preview {
     SignIn()
 }

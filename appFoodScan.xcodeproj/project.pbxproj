@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		5ED52A592D979B1E00F175DE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED52A572D9744A100F175DE /* Colors.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		5E20FA832D9734A000D24452 /* appFoodScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appFoodScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5ED52A572D9744A100F175DE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,7 +32,6 @@
 		5E20FA7A2D9734A000D24452 = {
 			isa = PBXGroup;
 			children = (
-				5ED52A562D97448700F175DE /* Resources */,
 				5E20FA852D9734A000D24452 /* appFoodScan */,
 				5E20FA842D9734A000D24452 /* Products */,
 			);
@@ -49,14 +43,6 @@
 				5E20FA832D9734A000D24452 /* appFoodScan.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5ED52A562D97448700F175DE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5ED52A572D9744A100F175DE /* Colors.swift */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +119,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED52A592D979B1E00F175DE /* Colors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
