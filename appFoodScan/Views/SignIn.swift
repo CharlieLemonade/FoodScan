@@ -14,21 +14,26 @@ struct SignIn: View {
     @State private var rememberMe = false
     
     var body: some View {
-
-        VStack(alignment: .leading, spacing: 8){
+        
+        Spacer()
+       
+        VStack(alignment: .leading, spacing: 10){
             Text("Welcome Back! 👋")
                 .foregroundStyle(AppColors.text)
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.bold)
             
-            Text("Sign in to continue your journey towards a healthier you.")
-                .foregroundColor(.gray)
+            VStack (alignment: .leading, spacing:6){
+                Text("Sign in to continue your journey towards a ")
+                    
+                
+                Text("towards a healthier you.")
+                    
+                
+            }.foregroundStyle(.gray)
             
         }.frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .padding(.top)
-        
-        
         
         VStack(alignment: .leading){
             VStack(alignment: .leading){
@@ -39,32 +44,33 @@ struct SignIn: View {
             }.padding(.vertical, 8)
             
             
-            Text("Password")
-                .fontWeight(.semibold)
-            CustomTextField(icon: "lock", placeholder: "Password", text: $password, isSecure: true)
+            VStack(alignment: .leading){
+                Text("Password")
+                    .fontWeight(.semibold)
+                
+                CustomTextField(icon: "lock", placeholder: "Password", text: $password, isSecure: true)
+            }.padding(.vertical, 8)
             
-        }.padding()
-        
+        }.padding(.horizontal)
+
         HStack {
-            Toggle(isOn: $rememberMe) {
-                Text("Remember me")
-                    .font(.callout)
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            
+            Toggle("Remember me", isOn: $rememberMe)
+                .toggleStyle(CustomCheckboxToggle())
+
             Spacer()
             
             Button(action: {
                 // Acción "Forgot Password"
             }) {
                 Text("Forgot Password?")
-                    .font(.callout)     .foregroundColor(
+                    .foregroundColor(
                         AppColors.primary)
                     .fontWeight(.semibold)
                 
                 
             }
-        }.frame(maxWidth: .infinity, alignment: .leading)
+        }.font(.callout)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
         
         HStack(alignment: .center)
@@ -106,35 +112,22 @@ struct SignIn: View {
             SocialButton(imageName: "X", action: {})
         }
         
+        Spacer()
         
         Button {
-            print ("Log in")
+            print ("Log In")
         } label: {
-            Text ("Log in")
+            Text ("Log In")
                 .foregroundStyle(AppColors.text)
                 .font (.subheadline)
                 .fontWeight (.semibold)
                 .frame(width: 360, height: 48)
                 .background(AppColors.primary)
                 .clipShape (RoundedRectangle(cornerRadius: 16))
-        } .padding(.top, 76)
+        }.padding(.bottom, 20)
        
     }
 }
-
-
-struct CheckboxToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
-                .foregroundColor(configuration.isOn ? .green : AppColors.primary)
-                .onTapGesture { configuration.isOn.toggle() }
-
-            configuration.label
-        }
-    }
-}
-
 
 #Preview {
     SignIn()

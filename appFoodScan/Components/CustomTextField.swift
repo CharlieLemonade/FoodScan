@@ -12,7 +12,7 @@ struct CustomTextField: View {
     var placeholder: String
     @Binding var text: String
     var isSecure: Bool = false
-    var backgroundColor: Color = Color(.systemGray6)
+    var backgroundColor: Color = AppColors.background
     var cornerRadius: CGFloat = 10
     var borderColor: Color = Color.gray.opacity(0.5)
     
