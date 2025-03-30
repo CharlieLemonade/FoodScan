@@ -120,6 +120,9 @@ struct SignUp: View {
             PrimaryButton(title: "Log in") {
                 
             }.padding(.bottom, 20)
+               
+                
+                
                 .navigationDestination(isPresented:$navigateToSignIn) {
                     SignIn()
                 }

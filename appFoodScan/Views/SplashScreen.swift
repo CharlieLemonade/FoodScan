@@ -10,48 +10,51 @@ import SwiftUI
 struct SplashScreen: View {
     @State private var isActive = false
 
-        var body: some View {
+    var body: some View {
+        
             if isActive {
-                SignIn()
+                WelcomeScreen()
             } else {
                 ZStack {
                     Color(AppColors.primary)
                         .ignoresSafeArea()
-                    
-                    VStack {
-                        Spacer()
                         
-                        VStack(alignment: .center, spacing: 52){
-                            Image("LogoFoodScanSecondary")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 128, height: 128)
+                        VStack {
+                            Spacer()
+                            
+                            VStack(alignment: .center, spacing: 52){
+                                Image("LogoFoodScanSecondary")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 128, height: 128)
 
-                            Text("FoodScan")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(AppColors.text)
+                                Text("FoodScan")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.text)
+                            }
+                            
+
+                            Spacer()
+
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                                .scaleEffect(1.5)
+                                .padding(.bottom, 50)
                         }
-                        
-
-                        Spacer()
-
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .black))
-                            .scaleEffect(1.5)
-                            .padding(.bottom, 50)
+                        .padding()
                     }
-                    .padding()
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        withAnimation {
-                            isActive = true
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                isActive = true
+                            }
                         }
                     }
                 }
-            }
         }
+        
+        
 }
 
 #Preview {

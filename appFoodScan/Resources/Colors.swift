@@ -11,6 +11,7 @@ struct AppColors {
     static let primary = Color(hex: "#A1CE50")
     static let secondary = Color(hex: "#181A1F")
     static let background = Color(hex: "#FAFAFA")
+    static let gray = Color(hex: "#616161")
     static let text = Color(hex: "#212121")
     static let secondaryGreen = Color(hex: "F7FBF1")
     static let backgroundBar = Color(hex: "EEEEEE")
