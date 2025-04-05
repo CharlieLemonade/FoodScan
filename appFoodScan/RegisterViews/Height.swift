@@ -12,7 +12,9 @@ struct Height: View {
     @State private var currentStep = 4
     private let totalSteps = 11
     @State private var name: String = ""
+    @State private var selection = "cm"
     @State private var value: Int = 0
+    
 
     var body: some View {
         let lbs = CGFloat(config.steps) * CGFloat(value)
@@ -26,15 +28,21 @@ struct Height: View {
             content: {
                 VStack(spacing: 40) {
 
-                    HStack(alignment: .lastTextBaseline, spacing: 5) {
-                        Text(verbatim: "\(Int(lbs))")
-                            .font(.largeTitle.bold())
-                            .contentTransition(.numericText(value: lbs))
-                            .animation(.snappy, value: lbs)
-
-                        Text("cm")
-                            .font(.title2)
-                            .foregroundStyle(.secondary)
+                    VStack {
+                        ToggleSelector(options: ["cm", "ft"], selected: $selection)
+                            .padding()
+                        
+                        HStack(alignment: .lastTextBaseline, spacing: 5) {
+                            
+                            Text(verbatim: "\(Int(lbs))")
+                                .font(.largeTitle.bold())
+                                .contentTransition(.numericText(value: lbs))
+                                .animation(.snappy, value: lbs)
+                            
+                            Text(selection)
+                                .font(.title2)
+                                .foregroundStyle(.secondary)
+                        }
                     }
 
                     // Picker

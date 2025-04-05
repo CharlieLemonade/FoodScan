@@ -1,18 +1,18 @@
 //
-//  AccountSetupStepName.swift
+//  TargetWeight.swift
 //  appFoodScan
 //
-//  Created by Carlos López on 29/03/25.
+//  Created by Carlos López on 04/04/25.
 //
 
 import SwiftUI
 
-struct AccountSetupStepName: View {
+struct TargetWeight: View {
     @State private var config: Config = .init(count: 30)
-    @State private var currentStep = 5
+    @State private var currentStep = 6
     private let totalSteps = 11
-    @State private var selection = "kg"
     @State private var name: String = ""
+    @State private var selection: String = "kg"
     @State private var value: Int = 0
 
     var body: some View {
@@ -21,11 +21,11 @@ struct AccountSetupStepName: View {
         OnboardingStepView(
             currentStep: currentStep,
             totalSteps: totalSteps,
-            title: "What´s your current \n weight?",
+            title: "What´s your target \n weight?",
             onBack: {},
             onContinue: {},
             content: {
-                VStack(spacing:60) {
+                VStack(spacing: 40) {
 
                     VStack {
                         ToggleSelector(options: ["kg", "lb"], selected: $selection)
@@ -43,7 +43,7 @@ struct AccountSetupStepName: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
-                    
+
                     // Picker
                     WheelPicker(config: config, value: $value)
                         .frame(height: 70)
@@ -55,6 +55,5 @@ struct AccountSetupStepName: View {
 }
 
 #Preview {
-    AccountSetupStepName()
+    TargetWeight()
 }
-
