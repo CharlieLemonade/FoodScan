@@ -12,6 +12,7 @@ struct appFoodScanApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.font, .custom("Urbanist-Regular", size: 16))
             
         }
     }

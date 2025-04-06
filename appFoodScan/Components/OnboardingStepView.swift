@@ -39,7 +39,7 @@ struct OnboardingStepView<Content: View>: View {
             Spacer()
 
             PrimaryButton(title: "Continue") {
-                print("Log in tapped")
+                onContinue()
             }.padding(.bottom, 20)
 
         }
