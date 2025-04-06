@@ -7,54 +7,52 @@
 
 import SwiftUI
 
-struct AccountSetupStepName: View {
+struct CurrentWeight: View {
     @State private var config: Config = .init(count: 30)
-    @State private var currentStep = 5
-    private let totalSteps = 11
     @State private var selection = "kg"
     @State private var name: String = ""
     @State private var value: Int = 0
-
+    
     var body: some View {
         let lbs = CGFloat(config.steps) * CGFloat(value)
-
-        OnboardingStepView(
-            currentStep: currentStep,
-            totalSteps: totalSteps,
-            title: "What´s your current \n weight?",
-            onBack: {},
-            onContinue: {},
-            content: {
-                VStack(spacing:60) {
-
-                    VStack {
-                        ToggleSelector(options: ["kg", "lb"], selected: $selection)
-                            .padding()
-                        
-                        HStack(alignment: .lastTextBaseline, spacing: 5) {
-                            
-                            Text(verbatim: "\(Int(lbs))")
-                                .font(.largeTitle.bold())
-                                .contentTransition(.numericText(value: lbs))
-                                .animation(.snappy, value: lbs)
-                            
-                            Text(selection)
-                                .font(.title2)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
+        
+        Text("What’s your current \nWeight?")
+            .font(.title)
+            .fontWeight(.semibold)
+            .multilineTextAlignment(.center)
+            .padding()
+            .foregroundStyle(AppColors.text)
+            .padding(.bottom, 90)
+        
+        VStack(spacing:60) {
+            
+            VStack {
+                ToggleSelector(options: ["kg", "lb"], selected: $selection)
+                    .padding(.bottom)
+                
+                HStack(alignment: .lastTextBaseline, spacing: 5) {
                     
-                    // Picker
-                    WheelPicker(config: config, value: $value)
-                        .frame(height: 70)
+                    Text(verbatim: "\(Int(lbs))")
+                        .font(.largeTitle.bold())
+                        .contentTransition(.numericText(value: lbs))
+                        .animation(.snappy, value: lbs)
+                    
+                    Text(selection)
+                        .font(.title2)
+                        .foregroundStyle(.secondary)
                 }
-                .padding(.top, 20)
+                
+                WheelPicker(config: config, value: $value)
+                    .frame(height: 70)
             }
-        )
+        }
+        .padding()
+        
+        Spacer()
     }
 }
 
 #Preview {
-    AccountSetupStepName()
+    CurrentWeight()
 }
 

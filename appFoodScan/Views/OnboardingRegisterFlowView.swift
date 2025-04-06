@@ -25,6 +25,10 @@ struct OnboardingRegisterFlowView: View {
             switch currentStep {
             case 0: Name()
             case 1: GenderSelection()
+            case 2: Birthday()
+            case 3: Height()
+            case 4: CurrentWeight()
+            case 5: TargetWeight()
             
             default: Text("Done!")
             }
