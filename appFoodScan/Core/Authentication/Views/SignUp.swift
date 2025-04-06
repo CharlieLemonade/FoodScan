@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SignUp: View {
     
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject var viewModel = RegsistrationViewModel()
+    
     @State private var agree = false
     @State private var navigateToSignIn = false
     
@@ -42,7 +42,7 @@ struct SignUp: View {
                     Text("Email")
                         .fontWeight(.semibold)
                     
-                    CustomTextField(icon: "envelope", placeholder: "Email", text: $email)
+                    CustomTextField(icon: "envelope", placeholder: "Email", text: $viewModel.email)
                 }.padding(.vertical, 8)
                 
                 
@@ -50,7 +50,7 @@ struct SignUp: View {
                     Text("Password")
                         .fontWeight(.semibold)
                     
-                    CustomTextField(icon: "lock", placeholder: "Password", text: $password, isSecure: true)
+                    CustomTextField(icon: "lock", placeholder: "Password", text: $viewModel.password, isSecure: true)
                 }.padding(.vertical, 8)
                 
             }.padding(.horizontal)
@@ -117,8 +117,13 @@ struct SignUp: View {
             
             Spacer()
             
-            PrimaryButton(title: "Log in") {
-                
+            PrimaryButton(title: "Sign Up") {
+                Task{ do {
+                    try await viewModel.createUser()
+                } catch {
+                    // Manejo del error, por ejemplo:
+                    print("Error al crear usuario: \(error.localizedDescription)")
+                } }
             }.padding(.bottom, 20)
                
                 
