@@ -19,10 +19,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct appFoodScanApp: App {
     
-    init()
-    {
-        print("hola")
-    }
     // register app delegate for Firebase setup
       @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
