@@ -7,59 +7,77 @@
 
 import SwiftUI
 
-struct Goal: Identifiable, Hashable {
-    let id = UUID()
-    let icon: String
-    let label: String
-    var selected: Bool = false
-}
+struct SelectionListItem: View {
+    var icon: String
+    var title: String
+    var isSelected: Bool
+    var action: () -> Void
 
-struct SelectionList: View {
-    @Binding var goals: [Goal]
-    
     var body: some View {
-        VStack(spacing: 12) {
-            ForEach(goals.indices, id: \.self) { index in
-                Button(action: {
-                    goals[index].selected.toggle()
-                }) {
-                    HStack {
-                        Text("\(goals[index].icon) \(goals[index].label)")
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.black)
-                        
-                        Spacer()
-                        
-                        if goals[index].selected {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.green)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .frame(width: 360, height: 56)
-                    .background(
-                        RoundedRectangle(cornerRadius: 32)
-                            .stroke(goals[index].selected ? Color.green : Color.gray.opacity(0.4), lineWidth: 1)
-                            .background(goals[index].selected ? Color.green.opacity(0.1) : Color.clear)
-                    )
+        Button(action: action) {
+            HStack(spacing: 12) {
+                Text(icon)
+                    .font(.system(size: 25))
+                Text(title)
+                    .foregroundColor(.black)
+                    .font(.system(size: 16, weight: .medium))
+                Spacer()
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(AppColors.primary)
                 }
             }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(isSelected ? Color.white : Color(.systemGray6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(isSelected ? AppColors.primary : Color.clear, lineWidth: 3)
+            )
+            .cornerRadius(5)
         }
     }
 }
 
+struct SelectionListExampleView: View {
+    @State private var selectedOptions: Set<String> = ["Lose Weight", "Gain Muscle", "Improve Nutrition"]
 
-struct SelectionList_Previews: PreviewProvider {
-    @State static var sampleGoals: [Goal] = [
-        Goal(icon: "🔥", label: "Lose Weight"),
-        Goal(icon: "💪", label: "Gain Muscle"),
-        Goal(icon: "🥗", label: "Improve Nutrition")
+    let options: [(icon: String, title: String)] = [
+        ("🔥", "Lose Weight"),
+        ("💪", "Gain Muscle"),
+        ("⚖️", "Maintain Weight"),
+        ("⚡️", "Boost Energy"),
+        ("🥗", "Improve Nutrition"),
+        ("🎈", "Gain Weight")
     ]
-    
+
+    var body: some View {
+        VStack(spacing: 12) {
+            ForEach(options, id: \.title) { option in
+                SelectionListItem(
+                    icon: option.icon,
+                    title: option.title,
+                    isSelected: selectedOptions.contains(option.title)
+                ) {
+                    if selectedOptions.contains(option.title) {
+                        selectedOptions.remove(option.title)
+                    } else {
+                        selectedOptions.insert(option.title)
+                    }
+                }
+            }
+        }
+        .padding()
+    }
+}
+
+struct SelectionListItem_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionList(goals: $sampleGoals)
-            .padding()
+        SelectionListExampleView()
             .previewLayout(.sizeThatFits)
     }
 }
+
+
+
 
