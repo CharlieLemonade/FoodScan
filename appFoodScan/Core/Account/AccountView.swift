@@ -103,9 +103,13 @@ struct AccountView: View {
                     .padding(.vertical)
                 }
                 .navigationTitle("Account")
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "ellipsis")
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Image("LogoFoodScanSecondary")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
                     }
                 }
             }
