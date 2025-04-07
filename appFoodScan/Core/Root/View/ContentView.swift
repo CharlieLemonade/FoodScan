@@ -17,7 +17,7 @@ struct ContentView: View {
                 SplashScreen()
             } else {
                 if viewModel.userSession != nil {
-                    OnBoarding()
+                    TabBarView()
                 } else {
                     SignIn()
                 }

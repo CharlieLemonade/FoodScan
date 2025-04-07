@@ -61,12 +61,12 @@ struct MainStatsCardView: View {
                     .frame(height: 1)
                 }
             
-            HStack(spacing: 32) {
+            HStack(spacing: 86) {
                 KcalStatView(label: "Walking", icon: "", value: 100)
                 
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
-                    .frame(height: 1)
+                    .frame(width: 1, height: 72)
                 
                 KcalStatView(label: "Activity", icon: "", value: 165)
             }
