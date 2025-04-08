@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUp: View {
     
-    @StateObject var viewModel = RegsistrationViewModel()
+    @StateObject var viewModel = RegistrationViewModel()
     
     @State private var agree = false
     @State private var navigateToSignIn = false

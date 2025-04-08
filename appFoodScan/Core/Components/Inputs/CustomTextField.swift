@@ -27,6 +27,7 @@ struct CustomTextField: View {
             } else {
                 TextField(placeholder, text: $text)
                     .textFieldStyle(PlainTextFieldStyle())
+                    .autocapitalization(.none)
             }
         }
         .padding()

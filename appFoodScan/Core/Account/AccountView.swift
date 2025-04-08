@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AccountView: View {
+    
+    @State private var showLogoutConfirmation = false
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -86,7 +89,7 @@ struct AccountView: View {
                         
                         // Logout
                         Button(action: {
-                            // Acción de logout
+                            showLogoutConfirmation = true
                         }) {
                             HStack {
                                 Image(systemName: "arrow.right.square")
@@ -99,6 +102,12 @@ struct AccountView: View {
                         .background(Color(.systemBackground))
                         .cornerRadius(12)
                         .padding(.horizontal)
+                        .alert("¿Estás seguro que deseas cerrar sesión?", isPresented: $showLogoutConfirmation) {
+                            Button("Cancelar", role: .cancel) { }
+                            Button("Cerrar sesión", role: .destructive) {
+                                AuthService.shared.signOut()
+                            }
+                        }
                     }
                     .padding(.vertical)
                 }
