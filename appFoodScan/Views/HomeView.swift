@@ -10,22 +10,29 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         
-        ZStack {
-            Color(.systemGray6)        .ignoresSafeArea()
-            VStack {
-                GreenHeaderBackground()
-                Spacer()
-                        }
-            
-            ScrollView {
-                VStack(spacing: 24) {
-                    HomeHeader()
-                    
-                    MainStatsCardView()
+        NavigationStack {
+            ZStack {
+                Color(.systemGray6)        .ignoresSafeArea()
+                VStack {
+                    GreenHeaderBackground()
+                    Spacer()
                 }
-                .padding(.vertical)
+                
+                ScrollView {
+                    VStack(spacing: 24) {
+                        HomeHeader()
+                        
+                        MainStatsCardView()
+                    }
+                    .padding(
+                        
+                    )
+                    .padding()
+                    .padding(.vertical)
+                }
             }
         }
+        
     }
 }
 

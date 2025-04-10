@@ -18,8 +18,7 @@ struct AccountView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
-                        
-                        
+        
                         HStack {
                             Image(systemName: "crown.fill")
                                 .foregroundColor(.yellow)
@@ -94,6 +93,7 @@ struct AccountView: View {
                             HStack {
                                 Image(systemName: "arrow.right.square")
                                 Text("Logout")
+                                    .fontWeight(.semibold)
                             }
                             .foregroundColor(.red)
                             .padding()
@@ -126,23 +126,6 @@ struct AccountView: View {
     }
 }
 
-struct AccountRow: View {
-    let icon: String
-    let label: String
-
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .frame(width: 24)
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 12)
-    }
-}
 
 #Preview {
     AccountView()

@@ -21,7 +21,7 @@ class RegistrationViewModel: ObservableObject {
             password: password
         )
         
-        // Paso 2: Obtener UID del usuario recién registrado
+        //Obtener UID del usuario recién registrado
         guard let uid = AuthService.shared.userSession?.uid else {
             throw NSError(domain: "Auth", code: 401, userInfo: [NSLocalizedDescriptionKey: "No authenticated user found"])
         }

@@ -15,8 +15,7 @@ struct MainStatsCardView: View {
                 Image(systemName: "chevron.left")
                 Spacer()
                 HStack(spacing: 8) {
-                    Text("Today, Dec 22")
-                        .font(.headline)
+                    DateFormattedView()
                     Image(systemName: "calendar")
                 }
                 Spacer()
@@ -29,7 +28,7 @@ struct MainStatsCardView: View {
             
                 MacroRingView(color: AppColors.primary, value: 1190, total: 2500, label: "Kcal Left")
                 
-                KcalStatView(label: "Eaten", icon: "🔥", value: 234)
+                KcalStatView(label: "Burned", icon: "🔥", value: 234)
             }
 
             HStack {
