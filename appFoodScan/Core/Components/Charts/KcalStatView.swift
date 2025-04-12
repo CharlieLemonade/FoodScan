@@ -16,12 +16,13 @@ struct KcalStatView: View {
         VStack(spacing: 8) {
             HStack(spacing: 4) {
                 Text(icon)
+                    .font(.caption2)
                 Text(label)
-                    .font(.footnote)
+                    .font(.caption2)
                     .foregroundColor(.gray)
             }
             Text("\(value)")
-                .font(.title)
+                .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(AppColors.text)
             Text("kcal")

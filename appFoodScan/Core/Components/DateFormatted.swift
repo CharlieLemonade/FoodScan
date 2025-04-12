@@ -11,7 +11,8 @@ import SwiftUI
 struct DateFormattedView: View {
     var body: some View {
         Text(formattedDate(from: Date()))
-            .font(.headline)
+            .font(.footnote)
+            .fontWeight(.semibold)
     }
     
     func formattedDate(from date: Date) -> String {

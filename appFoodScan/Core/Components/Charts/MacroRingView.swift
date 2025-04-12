@@ -27,7 +27,7 @@ struct MacroRingView: View {
                 
                 VStack(spacing: 8){
                     Text("\(value)")
-                        .font(.largeTitle)
+                        .font(.title)
                         .fontWeight(.bold)
                     Text("\(label)")
                         .font(.caption)
@@ -37,7 +37,7 @@ struct MacroRingView: View {
                 
 
             }
-            .frame(width: 120, height: 120)
+            .frame(width: 64, height: 64)
 
             
         }
