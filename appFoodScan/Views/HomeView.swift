@@ -22,7 +22,7 @@ struct HomeView: View {
             ScrollView {
                 
                     
-                /*VStack (spacing: 16) {
+                VStack (spacing: 16) {
                     HStack {
                         Image(systemName: "chevron.left")
                         Spacer()
@@ -72,8 +72,7 @@ struct HomeView: View {
                     .padding()
                     .background(.white)
                     .cornerRadius(12)
-                    .padding()*/
-                    
+                    .padding()
                 
                 
                 VStack {
