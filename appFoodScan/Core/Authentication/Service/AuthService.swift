@@ -58,10 +58,10 @@ class AuthService {
             targetWeight: 70,
             goals: ["Improve Nutrition"],
             activityLevel: "Moderately Active",
-            dietType: "Balanced Diet",
-            breakfastTime: "",
-            dinnerTime: "",
-            caloriePlan: CaloriePlan(totalCalories: 2200, carbsPercentage: 40, proteinPercentage: 30, fatPercentage: 30)
+            dietType: "Balanced Diet"
+            //breakfastTime: "",
+       //     dinnerTime: ""
+          //  caloriePlan: CaloriePlan(totalCalories: 2200, carbsPercentage: 40, proteinPercentage: 30, fatPercentage: 30)
         )
 
         try await UserService().saveUserProfile(defaultProfile, for: uid)

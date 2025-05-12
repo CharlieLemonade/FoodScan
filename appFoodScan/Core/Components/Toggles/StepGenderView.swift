@@ -22,18 +22,20 @@ enum GenderOption: String, CaseIterable {
 }
 
 struct StepGenderView: View {
-    @State private var selectedGender: GenderOption? = nil
+    var selectedGender: GenderOption?
+    var onSelect: (GenderOption) -> Void
 
     var body: some View {
-      
+        VStack {
             HStack(spacing: 40) {
                 genderOptionView(.male)
                 genderOptionView(.female)
-            }.padding(.bottom, 30)
+            }
+            .padding(.bottom, 30)
             .animation(.easeInOut(duration: 0.2), value: selectedGender)
 
             Button(action: {
-                selectedGender = .other
+                onSelect(.other)
             }) {
                 Text("Prefer not to say")
                     .foregroundColor(AppColors.text)
@@ -43,13 +45,13 @@ struct StepGenderView: View {
                     .padding(.vertical, 12)
                     .background(.white)
                     .clipShape(Capsule())
-            }.overlay(
+            }
+            .overlay(
                 RoundedRectangle(cornerRadius: 32)
                     .stroke(lineWidth: 0.5)
                     .foregroundColor(.gray.opacity(0.6))
             )
-
-        
+        }
     }
 
     private func genderOptionView(_ option: GenderOption) -> some View {
@@ -72,12 +74,11 @@ struct StepGenderView: View {
                 .foregroundColor(selectedGender == option ? AppColors.primary : .gray)
         }
         .onTapGesture {
-            selectedGender = option
+            onSelect(option)
         }
     }
 }
 
-#Preview {
-    StepGenderView()
-}
+
+
 

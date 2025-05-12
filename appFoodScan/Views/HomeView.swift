@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+let meals: [Meal] = [
+    Meal(name: "Breakfast", imageName: "square.stack.3d.up", currentCalories: 824, targetCalories: 768, completed: true),
+    Meal(name: "Lunch", imageName: "takeoutbag.and.cup.and.straw", currentCalories: 810, targetCalories: 768, completed: true),
+    Meal(name: "Dinner", imageName: "leaf", currentCalories: 0, targetCalories: 768, completed: false),
+    Meal(name: "Snacks", imageName: "skewer", currentCalories: 0, targetCalories: 256, completed: false)
+]
+
 struct HomeView: View {
     var body: some View {
         
@@ -75,24 +82,24 @@ struct HomeView: View {
                     .padding()
                 
                 
-                VStack {
-                    VStack(spacing: 1) {
-                        FoodsRow(icon: "Sandwich", label: "Breakfast")
-                        FoodsRow(icon: "Sandwich", label: "Breakfast")
-                        FoodsRow(icon: "Sandwich", label: "Breakfast")
-                        FoodsRow(icon: "Sandwich", label: "Breakfast")
+                VStack(alignment: .leading) {
+                    ForEach(meals) { meal in
+                        MealRow(meal: meal)
+                        Divider()
                     }
-                    .background(Color(.systemBackground))
-                    .cornerRadius(12)
-                    .padding(.horizontal)
-                    
                 }
+                .padding()
+                .background(.white)
+                .cornerRadius(16)
+                .padding()
                 
                 }
             
             }
             
         }
+        .navigationBarBackButtonHidden(true)
+
         
      /*   NavigationStack {
             ZStack {

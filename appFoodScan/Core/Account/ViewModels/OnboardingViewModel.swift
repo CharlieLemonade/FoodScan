@@ -24,7 +24,7 @@ class OnboardingViewModel: ObservableObject {
     @Published var dietType: String = ""
     @Published var breakfastTime: String = ""
     @Published var dinnerTime: String = ""
-    @Published var caloriePlan: CaloriePlan? = nil
+    //@Published var caloriePlan: CaloriePlan? = nil
 
     func submitOnboarding() async throws {
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -40,10 +40,10 @@ class OnboardingViewModel: ObservableObject {
             targetWeight: targetWeight,
             goals: goals,
             activityLevel: activityLevel,
-            dietType: dietType,
-            breakfastTime: breakfastTime,
-            dinnerTime: dinnerTime,
-            caloriePlan: caloriePlan
+            dietType: dietType
+           // breakfastTime: breakfastTime,
+            //dinnerTime: dinnerTime
+            //caloriePlan: caloriePlan
         )
 
         try await UserService().saveUserProfile(profile, for: uid)

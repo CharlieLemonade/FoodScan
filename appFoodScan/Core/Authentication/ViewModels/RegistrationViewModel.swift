@@ -36,15 +36,15 @@ class RegistrationViewModel: ObservableObject {
             targetWeight: 65,
             goals: ["Improve Nutrition"],
             activityLevel: "Lightly Active",
-            dietType: "Balanced Diet",
-            breakfastTime: "",
-            dinnerTime: "",
-            caloriePlan: CaloriePlan(
+            dietType: "Balanced Diet"
+           // breakfastTime: "",
+         //   dinnerTime: ""
+           /* caloriePlan: CaloriePlan(
                 totalCalories: 2200,
                 carbsPercentage: 40,
                 proteinPercentage: 30,
                 fatPercentage: 30
-            )
+            )*/
         )
         
         //Guardar Informacion de Perfil

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E663A762DD18EBA007E7769 /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E663A742DD18EBA007E7769 /* User.xcdatamodeld */; };
 		5EDBB5182DA33C72004AADF3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5EDBB5172DA33C72004AADF3 /* FirebaseAuth */; };
 		5EDBB51A2DA33C72004AADF3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5EDBB5192DA33C72004AADF3 /* FirebaseFirestore */; };
 		5EDBB51C2DA33C72004AADF3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5EDBB51B2DA33C72004AADF3 /* FirebaseStorage */; };
@@ -14,6 +15,7 @@
 
 /* Begin PBXFileReference section */
 		5E20FA832D9734A000D24452 /* appFoodScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appFoodScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E663A752DD18EBA007E7769 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -54,6 +56,7 @@
 		5E20FA7A2D9734A000D24452 = {
 			isa = PBXGroup;
 			children = (
+				5E663A742DD18EBA007E7769 /* User.xcdatamodeld */,
 				5E20FA852D9734A000D24452 /* appFoodScan */,
 				5E20FA842D9734A000D24452 /* Products */,
 			);
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E663A762DD18EBA007E7769 /* User.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +387,19 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5E663A742DD18EBA007E7769 /* User.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5E663A752DD18EBA007E7769 /* User.xcdatamodel */,
+			);
+			currentVersion = 5E663A752DD18EBA007E7769 /* User.xcdatamodel */;
+			path = User.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5E20FA7B2D9734A000D24452 /* Project object */;
 }

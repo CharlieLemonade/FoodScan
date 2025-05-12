@@ -21,12 +21,12 @@ struct FoodsRow: View {
                 
                 VStack(alignment: .leading){
                     Text(label)
-                        .font(.headline)
+                        .font(.title2)
                         .fontWeight(.bold)
                         .foregroundStyle(AppColors.text)
                     
-                    Text("810 / 768")
-                        .font(.footnote)
+                    Text("810 / 768 kcal")
+                        .font(.caption)
                         .fontWeight(.regular)
                         .foregroundStyle(.gray)
                 }
@@ -38,6 +38,7 @@ struct FoodsRow: View {
 
         }
         .padding(.vertical, 12)
+        .padding(.horizontal)
     }
 }
 

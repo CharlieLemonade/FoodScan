@@ -20,13 +20,15 @@ struct TabBarView: View {
                 }
                 .onAppear{ selectedTab == 0 }
                 .tag(0)
-            
+           
+            TestFetchView()
             Text("Tracker")
                 .tabItem {
                     Image(systemName: selectedTab == 1 ? "square.grid.2x2.fill" : "square.grid.2x2")
                         .environment(\.symbolVariants, selectedTab == 1 ? .fill : .none)
                     
                     Text("Tracker")
+                    
                 }
                 .onAppear{ selectedTab == 1 }
                 .tag(1)

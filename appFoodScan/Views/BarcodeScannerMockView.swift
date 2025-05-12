@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BarcodeScannerMockView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var scannedCode: String? = nil
 
     var body: some View {
@@ -16,44 +17,43 @@ struct BarcodeScannerMockView: View {
             Color.gray
                 .ignoresSafeArea()
             
-           
             ScannerCornerOverlay()
             
             VStack {
+                // Encabezado
                 HStack {
                     Button(action: {
-                        print("Cerrar presionado")
+                        dismiss()
                     }) {
                         Image(systemName: "xmark")
                             .font(.title2)
-                        .padding()
-                        .foregroundStyle(.white)
+                            .padding()
+                            .foregroundStyle(.white)
                     }
+
                     Spacer()
-                    
+
                     Text("Scan Barcode")
                         .foregroundStyle(.white)
                         .font(.title3)
                         .fontWeight(.semibold)
-                    
+
                     Spacer()
-                    
+
                     Button(action: {
-                        print("Cerrar presionado")
+                        dismiss() // O alguna otra acción
                     }) {
                         Image(systemName: "bolt.slash")
                             .font(.title2)
-                        .padding()
-                        .foregroundStyle(.white)
+                            .padding()
+                            .foregroundStyle(.white)
                     }
-
                 }
                 .padding(.horizontal, 5)
                 .padding(.top, 15)
-                
+
                 Spacer()
 
-                
                 if let code = scannedCode {
                     Text("Código escaneado: \(code)")
                         .foregroundColor(.white)
@@ -63,7 +63,7 @@ struct BarcodeScannerMockView: View {
                         .padding(.bottom, 40)
                 }
 
-                
+                // Controles inferiores
                 HStack(spacing: 50) {
                     Button(action: {
                         print("Galería presionada")
@@ -74,8 +74,8 @@ struct BarcodeScannerMockView: View {
                             .padding()
                             .background(Circle().stroke(Color.white, lineWidth: 2))
                     }
+
                     Button(action: {
-                        
                         scannedCode = "8931759322959"
                     }) {
                         ZStack {
@@ -87,6 +87,7 @@ struct BarcodeScannerMockView: View {
                                 .frame(width: 80, height: 80)
                         }
                     }
+
                     Button(action: {
                         print("Flash presionado")
                     }) {
@@ -100,6 +101,7 @@ struct BarcodeScannerMockView: View {
                 .padding(.bottom, 20)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

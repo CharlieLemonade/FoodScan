@@ -1,0 +1,105 @@
+//
+//  PlanReady.swift
+//  appFoodScan
+//
+//  Created by Carlos López on 11/05/25.
+//
+
+import SwiftUI
+
+struct PersonalizationView: View {
+    @State private var progress: CGFloat = 0.0
+    @State private var timer: Timer?
+    @State private var showPlan = false
+    let userProfile: UserProfile
+
+    var body: some View {
+        ZStack {
+            if showPlan {
+                CaloriePlanView()
+                    .transition(.opacity)
+            } else {
+                VStack {
+                    // Botón de cierre
+                    HStack {
+                        Button(action: {
+                            timer?.invalidate()
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.title2)
+                                .foregroundColor(.black)
+                        }
+                        .padding()
+                        Spacer()
+                    }
+
+                    Text("Personalizing your FoodScan experience...")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .foregroundStyle(AppColors.text)
+                        .padding(.bottom, 90)
+
+                    ZStack {
+                        Circle()
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 12)
+                            .frame(width: 220, height: 220)
+
+                        Circle()
+                            .trim(from: 0, to: progress)
+                            .stroke(AppColors.primary, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                            .rotationEffect(.degrees(-90))
+                            .frame(width: 220, height: 220)
+                            .animation(.easeInOut(duration: 0.2), value: progress)
+
+                        Text("\(Int(progress * 100))%")
+                            .font(.system(size: 50))
+                            .fontWeight(.semibold)
+                    }
+
+                    Spacer()
+
+                    Text("Hang tight! We're crafting a personalized plan just for you.")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
+
+                    Spacer()
+                }
+                .transition(.opacity)
+            }
+        }
+        .onAppear {
+            print("🧾 User Profile:")
+            print("Name: \(userProfile.name)")
+            print("Gender: \(userProfile.gender)")
+            print("Birthday: \(userProfile.birthday)")
+            print("Height: \(userProfile.height) cm")
+            print("Current Weight: \(userProfile.currentWeight) kg")
+            print("Target Weight: \(userProfile.targetWeight) kg")
+            print("Goals: \(userProfile.goals)")
+            print("Diet Type: \(userProfile.dietType)")
+            startProgress()
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
+        .animation(.easeInOut(duration: 0.6), value: showPlan)
+    }
+
+    func startProgress() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+            if progress < 1.0 {
+                progress += 0.01
+            } else {
+                timer?.invalidate()
+                showPlan = true
+            }
+        }
+    }
+}
+
+
+
