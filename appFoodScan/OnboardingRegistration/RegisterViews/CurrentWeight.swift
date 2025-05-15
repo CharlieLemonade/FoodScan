@@ -9,12 +9,17 @@ import SwiftUI
 
 struct CurrentWeight: View {
     @Binding var userProfile: UserProfile
-    @State private var config: Config = .init(count: 30)
     @State private var selection = "kg"
     @State private var value: Int = 0
 
+    var config: WeightPickerConfig {
+        selection == "kg"
+            ? WeightPickerConfig(min: 30, max: 200, spacing: 8)
+            : WeightPickerConfig(min: 66, max: 440, spacing: 8)
+    }
+
     var body: some View {
-        let rawWeight = CGFloat(config.steps) * CGFloat(value)
+        let rawWeight = CGFloat(value)
         let convertedWeight: Double = {
             if selection == "lb" {
                 return Double(rawWeight / 2.205)
@@ -23,7 +28,6 @@ struct CurrentWeight: View {
             }
         }()
 
-        
         DispatchQueue.main.async {
             userProfile.currentWeight = convertedWeight
         }
@@ -35,7 +39,7 @@ struct CurrentWeight: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .foregroundStyle(AppColors.text)
-                .padding(.bottom, 90)
+                .padding(.bottom, 20)
 
             VStack(spacing: 60) {
                 VStack {
@@ -53,8 +57,8 @@ struct CurrentWeight: View {
                             .foregroundStyle(.secondary)
                     }
 
-                    WheelPicker(config: config, value: $value)
-                        .frame(height: 70)
+                    WeightPicker(config: config, value: $value)
+                        .frame(height: 80)
                 }
             }
             .padding()
@@ -63,5 +67,6 @@ struct CurrentWeight: View {
         }
     }
 }
+
 
 

@@ -14,8 +14,8 @@ enum GenderOption: String, CaseIterable {
 
     var symbol: String {
         switch self {
-        case .male: return "mars"
-        case .female: return "venus"
+        case .male: return "masculine"
+        case .female: return "femenine"
         case .other: return "questionmark"
         }
     }
@@ -61,11 +61,10 @@ struct StepGenderView: View {
                     .fill(selectedGender == option ? AppColors.primary : Color(.systemGray6))
                     .frame(width: 120, height: 120)
 
-                Image(systemName: option.symbol)
+                Image(option.symbol)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.black)
+                    .frame(width: 60, height: 60)
             }
 
             Text(option.rawValue)
@@ -79,6 +78,17 @@ struct StepGenderView: View {
     }
 }
 
-
+struct StepGenderView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            StepGenderView(selectedGender: .male) { selected in
+                print("Selected gender: \(selected.rawValue)")
+            }
+        }
+        .padding()
+        .previewLayout(.sizeThatFits)
+        .frame(width: 375)
+    }
+}
 
 

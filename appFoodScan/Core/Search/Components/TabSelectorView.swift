@@ -18,7 +18,7 @@ struct TabSelectorView: View {
                     selectedTab = tab
                 }) {
                     Text(tab)
-                        .font(.subheadline)
+                        .font(.caption2)
                         .padding(.vertical, 10)
                         .frame(maxWidth: .infinity)
                         .background(selectedTab == tab ? AppColors.primary : Color.clear)

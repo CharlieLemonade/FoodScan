@@ -19,19 +19,20 @@ struct SocialLoginButton: View {
                 Image(logo)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 24, height: 24)
+                    .frame(width: 16, height: 16)
                    
         
                 
                 HStack(alignment: .center){
                     Text(text)
+                        .font(.headline)
                         .fontWeight(.semibold)
                         .foregroundColor(AppColors.text)
                         
                 }
                 
        
-            }.frame(width: 360, height: 56)
+            }.frame(width: 272, height: 48)
             .overlay{
                 RoundedRectangle (cornerRadius: 32)
                     .stroke (lineWidth: 0.5)

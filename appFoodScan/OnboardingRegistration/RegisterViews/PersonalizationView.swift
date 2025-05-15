@@ -1,4 +1,4 @@
-//
+
 //  PlanReady.swift
 //  appFoodScan
 //
@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct PersonalizationView: View {
+    @ObservedObject var viewModel: OnboardingRegistrationViewModel
     @State private var progress: CGFloat = 0.0
     @State private var timer: Timer?
     @State private var showPlan = false
-    let userProfile: UserProfile
+    @State private var caloriePlan: CaloriePlan?
+    @State private var hasTriedFetch = false
 
     var body: some View {
         ZStack {
-            if showPlan {
-                CaloriePlanView()
+            if showPlan, let plan = caloriePlan {
+                CaloriePlanView(plan: plan)
                     .transition(.opacity)
             } else {
                 VStack {
@@ -39,7 +41,7 @@ struct PersonalizationView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .foregroundStyle(AppColors.text)
-                        .padding(.bottom, 90)
+                        .padding(.bottom, 20)
 
                     ZStack {
                         Circle()
@@ -73,15 +75,30 @@ struct PersonalizationView: View {
         }
         .onAppear {
             print("🧾 User Profile:")
-            print("Name: \(userProfile.name)")
-            print("Gender: \(userProfile.gender)")
-            print("Birthday: \(userProfile.birthday)")
-            print("Height: \(userProfile.height) cm")
-            print("Current Weight: \(userProfile.currentWeight) kg")
-            print("Target Weight: \(userProfile.targetWeight) kg")
-            print("Goals: \(userProfile.goals)")
-            print("Diet Type: \(userProfile.dietType)")
+                print("Name: \(viewModel.userProfile.name)")
+                print("Gender: \(viewModel.userProfile.gender)")
+                print("Birthday: \(viewModel.userProfile.birthday)")
+                print("Height: \(viewModel.userProfile.height) cm")
+                print("Current Weight: \(viewModel.userProfile.currentWeight) kg")
+                print("Target Weight: \(viewModel.userProfile.targetWeight) kg")
+                print("Goals: \(viewModel.userProfile.goals)")
+                print("Diet Type: \(viewModel.userProfile.dietType)")
             startProgress()
+
+            if !hasTriedFetch {
+                hasTriedFetch = true
+                CaloriePlanService.fetch(for: viewModel.userProfile) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let plan):
+                            self.caloriePlan = plan
+                            viewModel.caloriePlan = plan
+                        case .failure(let error):
+                            print("❌ Error fetching calorie plan: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
         }
         .onDisappear {
             timer?.invalidate()
@@ -100,6 +117,10 @@ struct PersonalizationView: View {
         }
     }
 }
+
+
+
+
 
 
 

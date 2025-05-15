@@ -9,20 +9,31 @@ import SwiftUI
 
 struct Height: View {
     @Binding var userProfile: UserProfile
-    @State private var config: Config = .init(count: 30)
     @State private var selection = "cm"
-    @State private var value: Int = 0
+    @State private var value: Int = 170
+
+    var config: HeightPickerConfig {
+        selection == "cm"
+            ? HeightPickerConfig(min: 100, max: 220, spacing: 8)
+            : HeightPickerConfig(min: 39, max: 86, spacing: 8) 
+    }
+
+    var convertedHeight: Double {
+        selection == "cm" ? Double(value) : Double(value) * 2.54
+    }
+
+    var displayText: String {
+        if selection == "cm" {
+            return "\(value)"
+        } else {
+            let inches = value
+            let feet = inches / 12
+            let remainingInches = inches % 12
+            return "\(feet)′ \(remainingInches)″"
+        }
+    }
 
     var body: some View {
-        let rawHeight = CGFloat(config.steps) * CGFloat(value)
-        let convertedHeight: Double = {
-            if selection == "ft" {
-                return Double(rawHeight * 30.48)
-            } else {
-                return Double(rawHeight)
-            }
-        }()
-
         DispatchQueue.main.async {
             userProfile.height = convertedHeight
         }
@@ -34,7 +45,7 @@ struct Height: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .foregroundStyle(AppColors.text)
-                .padding(.bottom, 90)
+                .padding(.bottom, 40)
 
             VStack(spacing: 60) {
                 VStack {
@@ -42,21 +53,23 @@ struct Height: View {
                         .padding(.bottom)
 
                     HStack(alignment: .lastTextBaseline, spacing: 5) {
-                        Text("\(Int(rawHeight))")
+                        Text(displayText)
                             .font(.largeTitle.bold())
-                            .contentTransition(.numericText(value: rawHeight))
-                            .animation(.snappy, value: rawHeight)
+                            .contentTransition(.numericText(value: Double(value)))
+                            .animation(.snappy, value: value)
 
                         Text(selection)
                             .font(.title2)
                             .foregroundStyle(.secondary)
                     }
 
-                    WheelPicker(config: config, value: $value)
-                        .frame(height: 70)
+                    HeightPicker(config: config, value: $value)
+                        .frame(height: 80)
+                        
                 }
             }
             .padding()
+            
 
             Spacer()
         }

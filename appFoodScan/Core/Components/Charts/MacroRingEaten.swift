@@ -17,12 +17,12 @@ struct MacroRingEaten: View {
         VStack (spacing: 12){
             ZStack {
                 Circle()
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 8)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 6)
                 
                                 
                 Circle()
                     .trim(from: 0, to: CGFloat(value) / CGFloat(total))
-                    .stroke(color, lineWidth: 8)
+                    .stroke(color, lineWidth: 6)
                     .rotationEffect(.degrees(-90))
                 
                 VStack(spacing: 2){
@@ -30,7 +30,7 @@ struct MacroRingEaten: View {
                         .font(.title3)
                         .fontWeight(.bold)
                     Text("/ \(total) g")
-                        .font(.caption2)
+                        .font(.footnote)
                         .foregroundStyle(.gray)
                 }
 

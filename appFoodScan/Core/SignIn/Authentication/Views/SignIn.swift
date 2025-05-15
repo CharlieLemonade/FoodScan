@@ -1,38 +1,39 @@
 //
-//  SignUp.swift
+//  SignIn.swift
 //  appFoodScan
 //
-//  Created by Carlos López on 29/03/25.
+//  Created by Carlos López on 28/03/25.
 //
 
 import SwiftUI
 
-struct SignUp: View {
+struct SignIn: View {
+    @StateObject var viewModel = LoginViewModel()
     
-    @StateObject var viewModel = RegistrationViewModel()
-    
-    @State private var agree = false
-    @State private var navigateToSignIn = false
+    @State private var rememberMe = false
+    @State private var navigateToSignUp = false
     
     var body: some View {
         
         NavigationStack{
             Spacer()
             
+           
             VStack(alignment: .leading, spacing: 10){
-                Text("Join FoodScan Today ✨")
+                Text("Welcome Back! 👋")
                     .foregroundStyle(AppColors.text)
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.bold)
                 
                 VStack (alignment: .leading, spacing:6){
-                    Text("Create a FoodScan account to track yout meals,")
-                        .foregroundColor(.gray)
+                    Text("Sign in to continue your journey towards a ")
+                        .font(.callout)
+                        
                     
-                    Text("stay active and achieve your health goals")
-                        .foregroundStyle(.gray)
+                    Text("towards a healthier you.")
+                        .font(.callout)
                     
-                }
+                }.foregroundStyle(.gray)
                 
             }.frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -54,40 +55,39 @@ struct SignUp: View {
                 }.padding(.vertical, 8)
                 
             }.padding(.horizontal)
-            
-            HStack(spacing: 3){
-                Toggle("I agree to", isOn: .constant(false))
+
+            HStack {
+                Toggle("Remember me", isOn: $rememberMe)
                     .toggleStyle(CustomCheckboxToggle())
+
+                Spacer()
+                
                 Button(action: {
-                   //Action Terms & Conditions
+                    // Acción "Forgot Password"
                 }) {
-                    HStack(spacing: 1){
-                        Text("Terms & Conditions")
-                            .foregroundColor(
-                                AppColors.primary)
-                            .fontWeight(.semibold)
-                        Text(".")
-                            
-                    }
+                    Text("Forgot Password?")
+                        .foregroundColor(
+                            AppColors.primary)
+                        .fontWeight(.semibold)
                     
                     
                 }
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            }.font(.callout)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-                .font(.callout)
             
             HStack(alignment: .center)
             {
-                Text("Already have an account?")
+                Text("Don't have an account?")
                     .fontWeight(.regular)
                 Button(action: {
-                    navigateToSignIn = true
+                    navigateToSignUp = true
                 }) {
-                    Text("Sign In")
+                    Text("Sign up")
                         .foregroundColor(AppColors.primary)
                         .fontWeight(.semibold)
                 }
-            }.font(.callout)
+            } .font(.callout)
                 .padding()
             
             HStack{
@@ -108,40 +108,30 @@ struct SignUp: View {
             }
             .padding()
             
-            HStack(spacing: 40) {
+            
+            HStack(spacing: 20) {
                 SocialButton(imageName: "Google", action: {})
                 SocialButton(imageName: "Apple", action: {})
                 SocialButton(imageName: "Facebook", action: {})
                 SocialButton(imageName: "X", action: {})
             }
             
-            Spacer()
+            Spacer(minLength: 30)
             
-            PrimaryButton(title: "Sign Up") {
-                Task{ do {
-                    try await viewModel.createUser()
-                } catch {
-                    // Manejo del error, por ejemplo:
-                    print("Error al crear usuario: \(error.localizedDescription)")
-                } }
-            }.padding(.bottom, 20)
-               
-                
-                
-                .navigationDestination(isPresented:$navigateToSignIn) {
-                    SignIn()
+            
+            PrimaryButton(title: "Log in") {
+                Task{try await viewModel.login()}
+            }       .padding(.bottom, 20)
+                    .navigationDestination(isPresented:$navigateToSignUp) {
+                SignUp ()
                 }
-            
-            
-        }.navigationBarHidden(true)
+        } .navigationBarHidden(true)
+
         
-        
+       
     }
-    
-    
 }
 
 #Preview {
-    SignUp()
+    SignIn()
 }
- 

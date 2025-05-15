@@ -11,10 +11,10 @@ struct MealListView: View {
     @State private var selectedMeal: Meal? = nil
 
     let meals: [Meal] = [
-        Meal(name: "Breakfast", imageName: "square.stack.3d.up", currentCalories: 824, targetCalories: 768, completed: true),
-        Meal(name: "Lunch", imageName: "takeoutbag.and.cup.and.straw", currentCalories: 810, targetCalories: 768, completed: true),
-        Meal(name: "Dinner", imageName: "leaf", currentCalories: 0, targetCalories: 768, completed: false),
-        Meal(name: "Snacks", imageName: "skewer", currentCalories: 0, targetCalories: 256, completed: false)
+        Meal(name: "Breakfast", imageName: "breakfast", currentCalories: 824, targetCalories: 768, completed: true),
+        Meal(name: "Lunch", imageName: "sandwich", currentCalories: 810, targetCalories: 768, completed: true),
+        Meal(name: "Dinner", imageName: "pasta", currentCalories: 0, targetCalories: 768, completed: false),
+        Meal(name: "Snacks", imageName: "fries", currentCalories: 0, targetCalories: 256, completed: false)
     ]
 
     var body: some View {

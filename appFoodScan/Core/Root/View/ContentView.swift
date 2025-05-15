@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var viewModel = ContentViewModel()
     @State private var showSplash = true
-
+    
     var body: some View {
         ZStack {
             if showSplash {
@@ -22,7 +22,8 @@ struct ContentView: View {
                         .transition(.move(edge: .trailing).combined(with: .opacity))
                 } else {
                     WelcomeScreen()
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .transition(.move(edge: .bottom)
+                            .combined(with: .opacity))
                 }
             }
         }

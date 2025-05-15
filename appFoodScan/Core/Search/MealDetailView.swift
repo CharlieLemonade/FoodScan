@@ -44,7 +44,7 @@ struct MealDetailView: View {
                 FoodListView(foods: filteredFoods())
             }
 
-            Spacer()
+            
 
             // Navegación oculta al escáner
             NavigationLink(

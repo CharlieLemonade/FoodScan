@@ -16,8 +16,8 @@ struct SocialButton: View {
             Image(imageName)
             .resizable()
             .scaledToFit()
-            .frame(width: 20, height: 20)
-        }.frame(width: 54, height: 54)
+            .frame(width: 16, height: 16)
+        }.frame(width: 44, height: 44)
         .overlay{
             
             RoundedRectangle (cornerRadius: 16)

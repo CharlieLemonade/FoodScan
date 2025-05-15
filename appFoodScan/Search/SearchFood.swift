@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Food: Codable {
+struct Food: Codable, Equatable {
     let nombre: String
     let porcion: String
     let carbs: String
+    let calories: String
     let protein: String
     let fat: String
     let cholesterol: String
@@ -19,4 +20,5 @@ struct Food: Codable {
     let iron: String
     let potassium: String
 }
+
 

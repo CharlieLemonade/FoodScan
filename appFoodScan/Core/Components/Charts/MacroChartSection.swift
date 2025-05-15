@@ -20,7 +20,7 @@ struct MacroChartSection: View {
 
     var body: some View {
         VStack {
-            HStack {
+            HStack (){
                 ZStack {
                     Chart {
                         ForEach(macros) { macro in
@@ -32,19 +32,19 @@ struct MacroChartSection: View {
                             .foregroundStyle(by: .value("Macro", macro.name))
                         }
                     }
-                    .frame(width: 140, height: 140)
+                    .frame(width: 120, height: 120)
 
                     VStack{
                         Text("\(totalCalories, specifier: "%.0f")")
                             .foregroundColor(AppColors.text)
                             .fontWeight(.bold)
-                            .font(.title)
+                            .font(.title2)
                         
                         Text("kcal")
-                            .font(.caption)
+                            .font(.caption2)
                             .fontWeight(.light )
                         
-                    }.padding(.bottom)
+                    }.padding(.bottom, 30)
                     
                 }
                 
@@ -58,13 +58,13 @@ struct MacroChartSection: View {
 
                             Text(macro.name)
                                 .foregroundColor(AppColors.gray)
-                                .font(.callout)
+                                .font(.caption2)
                                 .fontWeight(.light)
 
                             
                             Text("\(macro.value, specifier: "%.1f") g   (\(percentage(for: macro), specifier: "%.1f")%)")
                                 .foregroundColor(AppColors.text)
-                                .font(.callout)
+                                .font(.caption2)
                                 .fontWeight(.semibold)
                             
 

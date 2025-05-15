@@ -15,7 +15,7 @@ struct QuickActionsView: View {
         HStack {
             Button(action: onQuickLog) {
                 Label("Quick Log", systemImage: "bolt.fill")
-                    .font(.callout)
+                    .font(.caption2)
                     .fontWeight(.semibold)
                     .foregroundStyle(.gray)
                     .padding()
@@ -26,7 +26,7 @@ struct QuickActionsView: View {
 
             Button(action: onCreateFood) {
                 Label("Create Food", systemImage: "plus.circle")
-                    .font(.callout)
+                    .font(.caption2)
                     .fontWeight(.semibold)
                     .foregroundStyle(.gray)
                     .padding()

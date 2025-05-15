@@ -1,14 +1,14 @@
 //
-//  WheelPicker.swift
+//  WeightPicker.swift
 //  appFoodScan
 //
-//  Created by Carlos López on 30/03/25.
+//  Created by Carlos López on 14/05/25.
 //
 
 import SwiftUI
 
-struct WheelPicker: View {
-    var config: Config
+struct WeightPicker: View {
+    var config: WeightPickerConfig = WeightPickerConfig(min: 30, max: 200)
     @Binding var value: Int
 
     var body: some View {
@@ -18,23 +18,19 @@ struct WheelPicker: View {
 
             ScrollView(.horizontal) {
                 HStack(spacing: config.spacing) {
-                    let totalSteps = config.steps * config.count
-
-                    ForEach(0..<totalSteps, id: \.self) { index in
-                        let remainder = index % config.steps
-
+                    ForEach(config.min...config.max, id: \.self) { index in
                         Divider()
-                            .background(remainder == 0 ? Color.primary : Color.gray)
+                            .background(index % 5 == 0 ? Color.primary : Color.gray)
                             .frame(
                                 width: 1,
-                                height: remainder == 0 ? 20 : 10,
+                                height: index % 5 == 0 ? 24 : 12,
                                 alignment: .center
                             )
                             .frame(maxHeight: 24, alignment: .bottom)
-                            .overlay(alignment: .bottom){
-                                if remainder == 0 && config.showText{
-                                    Text("\(index / config.steps)")
-                                        .font(.title2)
+                            .overlay(alignment: .bottom) {
+                                if index % 5 == 0 && config.showText {
+                                    Text("\(index)")
+                                        .font(.title3)
                                         .fontWeight(.semibold)
                                         .textScale(.secondary)
                                         .fixedSize()
@@ -42,6 +38,7 @@ struct WheelPicker: View {
                                         .offset(y: 30)
                                 }
                             }
+                            .id(index)
                     }
                 }
                 .frame(height: size.height)
@@ -50,32 +47,29 @@ struct WheelPicker: View {
             .scrollIndicators(.hidden)
             .scrollTargetBehavior(.viewAligned)
             .scrollPosition(id: .init(get: {
-                let position: Int? = value
-                return position
+                value
             }, set: { newValue in
-                if let newValue {value = newValue}
+                if let newValue { value = newValue }
             }))
-            .overlay(alignment: .center, content: {
+            .overlay(alignment: .center) {
                 Rectangle()
                     .frame(width: 3, height: 40)
                     .padding(.bottom, 25)
                     .foregroundStyle(AppColors.primary)
-
-            })
+            }
             .safeAreaPadding(.horizontal, horizontalPadding)
         }
     }
 }
 
-struct Config: Equatable {
-    var count: Int
-    var steps: Int = 10
-    var spacing: CGFloat = 5
+struct WeightPickerConfig: Equatable {
+    var min: Int
+    var max: Int
+    var spacing: CGFloat = 8
     var showText: Bool = true
 }
 
-
 #Preview {
-    @State var value = 0
-    return WheelPicker(config: Config(count: 20), value: $value)
+    @State var weight = 70
+    return WeightPicker(value: $weight)
 }

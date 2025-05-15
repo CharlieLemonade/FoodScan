@@ -7,57 +7,47 @@
 
 import SwiftUI
 
-struct SelectionActivity: View {
-    @State private var selectedOptions: Set<String> = ["Lose Weight", "Gain Muscle", "Improve Nutrition"]
+struct ActivityLevel: View {
+    @Binding var userProfile: UserProfile
 
-    let options: [(icon: String, title: String)] = [
-        ("🔥", "Lose Weight"),
-        ("💪", "Gain Muscle"),
-        ("⚖️", "Maintain Weight"),
-        ("⚡️", "Boost Energy"),
-        ("🥗", "Improve Nutrition"),
-        ("🎈", "Gain Weight")
+    let options: [(icon: String, title: String, value: String)] = [
+        ("🛋️", "Sedentary", "sedentary"),
+        ("🚶", "Lightly Active", "light"),
+        ("🏃‍♂️", "Moderately Active", "moderate"),
+        ("🏋️", "Very Active", "active"),
+        ("🔥", "Extra Active", "very_active")
     ]
 
     var body: some View {
-        VStack(spacing: 12) {
-            ForEach(options, id: \.title) { option in
-                SelectionListItem(
-                    icon: option.icon,
-                    title: option.title,
-                    isSelected: selectedOptions.contains(option.title)
-                ) {
-                    if selectedOptions.contains(option.title) {
-                        selectedOptions.remove(option.title)
-                    } else {
-                        selectedOptions.insert(option.title)
+        VStack {
+            Text("What's your activity level?")
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                .padding()
+                .foregroundStyle(AppColors.text)
+                .padding(.bottom, 5)
+
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(options, id: \.value) { option in
+                        SelectionListItem(
+                            icon: option.icon,
+                            title: option.title,
+                            isSelected: userProfile.activityLevel == option.value
+                        ) {
+                            userProfile.activityLevel = option.value
+                        }
                     }
                 }
+                .padding(.horizontal, 4)
             }
+
+            Spacer()
         }
-        
     }
 }
 
 
-struct ActivityLevel: View {
-    var body: some View {
-        
-        Text("What’s your main goal \nwith FoodScan?")
-            .font(.title)
-            .fontWeight(.semibold)
-            .multilineTextAlignment(.center)
-            .padding()
-            .foregroundStyle(AppColors.text)
-
-        SelectionActivity()
-            .padding(.top)
-        
-        
-    }
-}
 
 
-#Preview {
-    ActivityLevel()
-}

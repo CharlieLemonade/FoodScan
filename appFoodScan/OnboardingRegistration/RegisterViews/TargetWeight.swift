@@ -35,7 +35,7 @@ struct TargetWeight: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .foregroundStyle(AppColors.text)
-                .padding(.bottom, 90)
+                .padding(.bottom, 20)
 
             VStack(spacing: 60) {
                 VStack {
@@ -54,7 +54,7 @@ struct TargetWeight: View {
                     }
 
                     WheelPicker(config: config, value: $value)
-                        .frame(height: 70)
+                        .frame(height: 80)
                 }
             }
             .padding()

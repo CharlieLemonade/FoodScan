@@ -30,30 +30,32 @@ struct MainGoals: View {
                 .foregroundStyle(AppColors.text)
                 .padding(.bottom, 5)
 
-            VStack(spacing: 12) {
-                ForEach(options, id: \.title) { option in
-                    SelectionListItem(
-                        icon: option.icon,
-                        title: option.title,
-                        isSelected: selectedOptions.contains(option.title)
-                    ) {
-                        if selectedOptions.contains(option.title) {
-                            selectedOptions.remove(option.title)
-                        } else {
-                            selectedOptions.insert(option.title)
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(options, id: \.title) { option in
+                        SelectionListItem(
+                            icon: option.icon,
+                            title: option.title,
+                            isSelected: selectedOptions.contains(option.title)
+                        ) {
+                            if selectedOptions.contains(option.title) {
+                                selectedOptions.remove(option.title)
+                            } else {
+                                selectedOptions.insert(option.title)
+                            }
+                            userProfile.goals = Array(selectedOptions)
                         }
-                        // Actualiza userProfile cada vez que cambia
-                        userProfile.goals = Array(selectedOptions)
                     }
                 }
+                .padding(.horizontal, 4)
             }
-            .padding()
 
             Spacer()
         }
         .onAppear {
-            selectedOptions = Set(userProfile.goals) // para restaurar si ya estaban seleccionadas
+            selectedOptions = Set(userProfile.goals)
         }
     }
 }
+
 

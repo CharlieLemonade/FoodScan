@@ -12,16 +12,6 @@ struct FoodView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            TextField("Código de barras", text: $codigo)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            Button("Buscar alimento") {
-                viewModel.buscarPorCodigo(codigo)
-            }
-            
-            
-
             if let food = viewModel.food {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Nombre: \(food.nombre)")
@@ -30,6 +20,7 @@ struct FoodView: View {
                         .font(.subheadline).foregroundColor(.gray)
                     Divider()
                     Group {
+                        Text("Calories: \(food.calories) kcal")
                         Text("Carbohidratos: \(food.carbs) g")
                         Text("Proteínas: \(food.protein) g")
                         Text("Grasas: \(food.fat) g")
@@ -64,6 +55,7 @@ struct FoodView: View {
         nombre: "100% Pure Coconut Water",
         porcion: "8 fl oz",
         carbs: "11.00",
+        calories: "9",
         protein: "0",
         fat: "0",
         cholesterol: "0",

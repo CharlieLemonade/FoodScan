@@ -30,20 +30,23 @@ struct DietType: View {
                 .foregroundStyle(AppColors.text)
                 .padding(.bottom, 5)
 
-            VStack(spacing: 12) {
-                ForEach(options, id: \.title) { option in
-                    SelectionListItem(
-                        icon: option.icon,
-                        title: option.title,
-                        isSelected: userProfile.dietType == option.title
-                    ) {
-                        userProfile.dietType = option.title
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(options, id: \.title) { option in
+                        SelectionListItem(
+                            icon: option.icon,
+                            title: option.title,
+                            isSelected: userProfile.dietType == option.title
+                        ) {
+                            userProfile.dietType = option.title
+                        }
                     }
                 }
+                .padding(.horizontal, 4)
             }
-            .padding()
 
             Spacer()
         }
     }
 }
+

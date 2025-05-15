@@ -8,7 +8,6 @@
 import Foundation
 import FirebaseFirestore
 
-
 class UserService {
     private let db = Firestore.firestore()
 
@@ -34,8 +33,6 @@ class UserService {
             goals: data["goals"] as? [String] ?? [],
             activityLevel: data["activityLevel"] as? String ?? "",
             dietType: data["dietType"] as? String ?? ""
-      //      breakfastTime: data["breakfastTime"] as? String ?? "",
-          //  dinnerTime: data["dinnerTime"] as? String ?? ""
         )
     }
 

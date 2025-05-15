@@ -30,14 +30,14 @@ struct MacroRingView: View {
                         .font(.title)
                         .fontWeight(.bold)
                     Text("\(label)")
-                        .font(.caption)
+                        .font(.footnote)
                         .foregroundStyle(.gray)
                 }
                 
                 
 
             }
-            .frame(width: 64, height: 64)
+            .frame(width: 112, height: 112)
 
             
         }

@@ -49,13 +49,15 @@ struct Card: View {
                                 HStack {
                                     Text("Cholesterol")
                                         .fontWeight(.light)
+                                        
                                     
                                     Spacer()
                                     
                                     Text("5 mg (2%)")
                                         .fontWeight(.semibold)
+                                    
                                 }
-                                .font(.callout).foregroundColor(AppColors.text)
+                                .font(.caption).foregroundColor(AppColors.text)
                                 .padding(.horizontal)
                                 
                                 HStack {
@@ -67,7 +69,7 @@ struct Card: View {
                                     Text("5 mg (2%)")
                                         .fontWeight(.semibold)
                                 }
-                                .font(.callout).foregroundColor(AppColors.text)
+                                .font(.caption).foregroundColor(AppColors.text)
                                 .padding(.horizontal)
                             }
                             
@@ -91,7 +93,7 @@ struct Card: View {
                                     Text("5 mg (2%)")
                                         .fontWeight(.semibold)
                                 }
-                                .font(.callout).foregroundColor(AppColors.text)
+                                .font(.caption).foregroundColor(AppColors.text)
                                 .padding(.horizontal)
                                 
                                 HStack {
@@ -115,7 +117,7 @@ struct Card: View {
                                     Text("5 mg (2%)")
                                         .fontWeight(.semibold)
                                 }
-                                .font(.callout).foregroundColor(AppColors.text)
+                                .font(.caption).foregroundColor(AppColors.text)
                                 .padding(.horizontal)
                             }
                             
@@ -162,7 +164,7 @@ struct Card: View {
                                 HStack
                                 {
                                     Text("42 g")
-                                        .font(.title)
+                                        .font(.title2)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(AppColors.text)
                                     
@@ -170,7 +172,7 @@ struct Card: View {
                                         withAnimation(.snappy) { }
                                     } label: {
                                         Image(systemName: "square.and.pencil")
-                                            .imageScale(.large)
+                                            .imageScale(.medium)
                                             .foregroundStyle(.gray)
                                     }
                                     
@@ -208,16 +210,9 @@ struct Card: View {
                             
                         }.padding(.horizontal)
                         HStack{
-                            Button{
+                            
+                            PrimaryButton(title: "+ Add"){
                                 
-                            } label:{
-                                Text(" + Add")
-                                    .frame(width: 360, height: 60)
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(AppColors.text)
-                                    .background(AppColors.primary)
-                                    .cornerRadius(40)
                             }
                         }
                     }

@@ -8,6 +8,7 @@
 import Foundation
 
 class FoodViewModel: ObservableObject {
+    
     @Published var food: Food?
     @Published var errorMessage: String?
 

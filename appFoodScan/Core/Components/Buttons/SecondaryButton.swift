@@ -17,7 +17,7 @@ struct SecondaryButton: View {
                 .foregroundStyle(AppColors.text)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .frame(width: 360, height: 56)
+                .frame(width: 260, height: 56)
                 .background(AppColors.secondaryGreen)
                 .clipShape(RoundedRectangle(cornerRadius: 32))
         }

@@ -19,7 +19,7 @@ struct GenderSelection: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .foregroundStyle(AppColors.text)
-                .padding(.bottom, 90)
+                .padding(.bottom, 40)
 
             StepGenderView(
                 selectedGender: selectedGender,
