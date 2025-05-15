@@ -17,15 +17,7 @@ struct MealDetailView: View {
 
     let tabs = ["Recent", "Favorites", "Personal"]
 
-    let foodItems: [FoodItem] = [
-        FoodItem(name: "Cheeseburger", calories: 303, grams: 150),
-        FoodItem(name: "Oatmeal", calories: 150, grams: 40),
-        FoodItem(name: "Grilled Chicken Salad", calories: 350, grams: 300),
-        FoodItem(name: "Scrambled Eggs", calories: 160, grams: 100),
-        FoodItem(name: "Sushi Roll", calories: 250, grams: 180),
-        FoodItem(name: "Mashed Potatoes", calories: 240, grams: 200),
-        FoodItem(name: "Pancakes", calories: 220, grams: 150)
-    ]
+    let foodItems: [Food]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -71,9 +63,9 @@ struct MealDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    func filteredFoods() -> [FoodItem] {
+    func filteredFoods() -> [Food] {
         guard !searchText.isEmpty else { return foodItems }
-        return foodItems.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        return foodItems.filter { $0.nombre.localizedCaseInsensitiveContains(searchText) }
     }
 }
 
@@ -86,7 +78,7 @@ struct MealDetailView: View {
             currentCalories: 0,
             targetCalories: 768,
             completed: false
-        ))
+        ), foodItems: MOCK_FOOD)
     }
 }
 

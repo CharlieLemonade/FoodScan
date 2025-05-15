@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodRowView: View {
-    let food: FoodItem
+    let food: Food
     let isLast: Bool
 
     var body: some View {
@@ -22,9 +22,9 @@ struct FoodRowView: View {
                     .font(.caption)
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(food.name)
+                    Text(food.nombre)
                         .font(.headline)
-                    Text("\(food.calories) kcal · \(food.grams) gram")
+                    Text("\(food.calories) kcal · \(food.porcion)")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
@@ -43,7 +43,7 @@ struct FoodRowView: View {
 
 #Preview {
     FoodRowView(
-        food: FoodItem(name: "Sushi Roll", calories: 250, grams: 180),
+        food: MOCK_FOOD[0] ,
         isLast: false
     )
     .padding()

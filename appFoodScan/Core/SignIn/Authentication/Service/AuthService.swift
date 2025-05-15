@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestore
 import FirebaseAuth
 
 class AuthService {
@@ -15,7 +16,7 @@ class AuthService {
     static let shared = AuthService()
     
     init() {
-        self.userSession = Auth.auth().currentUser
+        Task {try await loadUserData()}
     }
     
     @MainActor
@@ -43,6 +44,16 @@ class AuthService {
     func signOut() {
         try? Auth.auth().signOut() //Sign Out on backend
         self.userSession = nil // Removes locally
+    }
+    
+    func loadUserData() async throws {
+        self.userSession = Auth.auth().currentUser
+        
+        guard let currentUserUID = userSession?.uid else { return }
+        
+        let snapshot = try await Firestore.firestore().collection("users").document(currentUserUID).getDocument()
+        
+        print("DEBUG: Snapshot \(snapshot.data() ?? [:])")
     }
     
 

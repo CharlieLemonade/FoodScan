@@ -36,7 +36,7 @@ struct MealListView: View {
                 set: { if !$0 { selectedMeal = nil } }
             )) {
                 if let meal = selectedMeal {
-                    MealDetailView(meal: meal)
+                    MealDetailView(meal: meal, foodItems: MOCK_FOOD)
                 }
             }
         }

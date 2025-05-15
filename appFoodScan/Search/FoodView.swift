@@ -8,24 +8,44 @@
 import SwiftUI
 
 struct FoodView: View {
-    @StateObject var viewModel = FoodViewModel()
+    @StateObject var viewModel: FoodViewModel
+    @State private var codigo = ""
+
+    init(viewModel: FoodViewModel = FoodViewModel()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         VStack(spacing: 20) {
+            // Campo de búsqueda
+            HStack {
+                TextField("Código del alimento", text: $codigo)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+
+                Button("Buscar") {
+                    viewModel.buscarPorCodigo(codigo)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(codigo.trimmingCharacters(in: .whitespaces).isEmpty)
+            }
+
+            // Información del alimento
             if let food = viewModel.food {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Nombre: \(food.nombre)")
                         .font(.title2).bold()
                     Text("Porción: \(food.porcion)")
-                        .font(.subheadline).foregroundColor(.gray)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
                     Divider()
                     Group {
-                        Text("Calories: \(food.calories) kcal")
-                        Text("Carbohidratos: \(food.carbs) g")
-                        Text("Proteínas: \(food.protein) g")
+                        Text("Calorías: \(food.calories.formated()) kcal")
+                        Text("Carbohidratos: \(food.carbs.formated()) g")
+                        Text("Proteínas: \(food.protein.formated()) g")
                         Text("Grasas: \(food.fat) g")
-                        Text("Colesterol: \(food.cholesterol) mg")
-                        Text("Sodio: \(food.sodium) mg")
+                        Text("Colesterol: \(food.cholesterol.formated()) mg")
+                        Text("Sodio: \(food.sodium.formated()) mg")
                         Text("Calcio: \(food.calcium) mg")
                         Text("Hierro: \(food.iron) mg")
                         Text("Potasio: \(food.potassium) mg")
@@ -38,32 +58,19 @@ struct FoodView: View {
                 .padding()
             }
 
+            // Mensaje de error
             if let error = viewModel.errorMessage {
-                Text("Error: \(error)").foregroundColor(.red)
+                Text("Error: \(error)")
+                    .foregroundColor(.red)
+                    .padding()
             }
 
             Spacer()
         }
     }
-
-    @State private var codigo = ""
 }
 
 #Preview {
     let mockVM = FoodViewModel()
-    mockVM.food = Food(
-        nombre: "100% Pure Coconut Water",
-        porcion: "8 fl oz",
-        carbs: "11.00",
-        calories: "9",
-        protein: "0",
-        fat: "0",
-        cholesterol: "0",
-        sodium: "60",
-        calcium: "34",
-        iron: "0",
-        potassium: "470"
-    )
-
-    return FoodView()
+    return FoodView(viewModel: mockVM)
 }

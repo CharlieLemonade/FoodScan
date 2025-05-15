@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodListView: View {
-    let foods: [FoodItem]
+    let foods: [Food]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -25,13 +25,8 @@ struct FoodListView: View {
 
 
 #Preview {
-    let sampleFoods = [
-        FoodItem(name: "Cheeseburger", calories: 303, grams: 150),
-        FoodItem(name: "Grilled Chicken Salad", calories: 350, grams: 300),
-        FoodItem(name: "Oatmeal", calories: 150, grams: 40)
-    ]
     
-    return FoodListView(foods: sampleFoods)
+    return FoodListView(foods: MOCK_FOOD)
         .padding()
         .previewLayout(.sizeThatFits)
         .background(Color(.systemGroupedBackground))

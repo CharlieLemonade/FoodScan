@@ -18,7 +18,7 @@ struct HomeView: View {
     @State private var selectedMeal: Meal? = nil
 
     var body: some View {
-        NavigationStack {
+        /*NavigationStack {
             ZStack {
                 Color(.systemGray6)
                     .ignoresSafeArea()
@@ -178,7 +178,8 @@ struct HomeView: View {
                     }
                 }
             }
-        }
+        }*/
+        Text("Hellos")
     }
 }
 
